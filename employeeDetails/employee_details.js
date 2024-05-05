@@ -1,13 +1,13 @@
 const employees = [
-    { id: 1, name: 'John Doe', age: 30, department: 'IT', salary: 50000 },
-    { id: 2, name: 'Alice Smith', age: 28, department: 'HR', salary: 45000 },
-    { id: 3, name: 'Bob Johnson', age: 35, department: 'Finance', salary: 60000 },
-    { id: 4, name: 'Chacha Bashir', age: 32, department: 'HR', salary: 55000 },
+    { id: 1, name: 'John Doe', age: 30, department: 'IT', salary: 50000, expert: 'Javascript'},
+    { id: 2, name: 'Alice Smith', age: 28, department: 'HR', salary: 45000, expert: 'Python' },
+    { id: 3, name: 'Bob Johnson', age: 35, department: 'Finance', salary: 60000, expert: 'Java' },
+    { id: 4, name: 'Chacha Bashir', age: 32, department: 'HR', salary: 55000, expert: 'Administration' },
     //... More employee records can be added here
   ];
 
    // Function to display all employees
-const totalEmployees = employees.map((employee, index) => `<p>${employee.id}: ${employee.name}: ${employee.name} - ${employee.department} - $${employee.salary}</p>`).join('');
+const totalEmployees = employees.map((employee, index) => `<p>${employee.id}: ${employee.name}: ${employee.name} - ${employee.department} - $${employee.salary} - ${employee.specialization} </p>`).join('');
 document.getElementById('employeesDetails').innerHTML = totalEmployees; 
 
 function calculateTotalSalaries() {
@@ -29,3 +29,14 @@ function findEmployeeById(employeeId) {
     else{
       document.getElementById('employeesDetails').innerHTML = 'no employee has been found with this ID';
     }}
+
+    function findEmployeeByExpert(expertise) {
+        const foundexpertEmployee = employees.find(employee => employee.expert.toLowerCase() === expertise.toLowerCase()); // Case-insensitive search
+      
+        if (foundexpertEmployee) {
+          document.getElementById('employeesDetails').innerHTML = `<p>${foundexpertEmployee.id}: ${foundexpertEmployee.name}: ${foundexpertEmployee.name} - ${foundexpertEmployee.department} - $${foundexpertEmployee.salary}</p>`;
+        } else {
+          document.getElementById('employeesDetails').innerHTML = `No employee found with expertise in '${expertise}'.`;
+        }
+      }
+      
